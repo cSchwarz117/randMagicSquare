@@ -36,6 +36,41 @@ pub fn fill_five() -> Array2D<i64> {
     return two_d;
 }
 
+
+pub fn fill_seven() -> Array2D<i64> {
+    let mut two_d = Array2D::filled_with(0, 7, 7);
+    let mut rng = rand::thread_rng();
+    let mut m = rng.gen_range(0, 6);
+    let mut n = rng.gen_range(0, 6);
+
+    for x in 1..50 {
+        if two_d[(m, n)] > 0 {
+            m = m + 5;
+            n = n + 6;
+        }
+        if m > 6 {
+            m = m - 7;
+        }
+        if n > 6 {
+            n = n - 7;
+        }
+
+        two_d[(m, n)] = x;
+
+        m = m + 3;
+        n = n + 1;
+
+        if m > 6 {
+            m = m - 7;
+        }
+        if n > 6 {
+            n = n - 7;
+        }
+    }
+
+    return two_d;
+}
+
 #[cfg(test)]
 mod tests {
     use array2d::Array2D;
